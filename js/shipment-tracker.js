@@ -902,16 +902,15 @@
         if (currentStageData.stageName === 'ip_number') {
             // Custom rendering for ip_number stage
             const issuedDateField = currentStageData.config.fields.find(f => f.name === 'issued_date');
-            const fileUrlField = currentStageData.config.fields.find(f => f.name === 'file_url');
 
             let issuedDateValue = currentStageData.details.issued_date || 'N/A';
-            let fileUrlValue = 'N/A';
-            if (currentStageData.details.file_url) {
-                fileUrlValue = `<a href="${currentStageData.details.file_url}" target="_blank" class="button button-secondary">View Document</a>`;
-            }
-
+            
             table.innerHTML += `<tr><td>${issuedDateField.label}</td><td>${issuedDateValue}</td></tr>`;
-            table.innerHTML += `<tr><td>${fileUrlField.label}</td><td>${fileUrlValue}</td></tr>`;
+            
+            if (currentStageData.details.file_url) {
+                const fileUrlValue = `<a href="${currentStageData.details.file_url}" target="_blank" class="button button-secondary">View Document</a>`;
+                table.innerHTML += `<tr><td>Document URL</td><td>${fileUrlValue}</td></tr>`;
+            }
 
             const references = currentStageData.details.references || [];
             if (references.length > 0) {
