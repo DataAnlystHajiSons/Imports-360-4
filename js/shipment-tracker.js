@@ -95,7 +95,7 @@
             fields: [
                 { name: "lc_number", type: "text", label: "LC Number" },
                 { name: "opened_date", type: "date", label: "Opened Date" },
-                { name: "shared_date", type: "date", label: "Shared with Supplier Date" },
+                { name: "lc_shared_date", type: "date", label: "Shared with Supplier Date" },
                 { name: "notes", type: "textarea", label: "Notes" },
                 { name: "bank_id", type: "uuid", label: "Bank", fk: { relation: "bank", displayColumn: "name" } }
             ]
