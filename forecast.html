@@ -40,36 +40,187 @@
         background-color: #dc3545;
     }
 
-    /* Table Enhancements */
+    /* Enhanced Table Styles for Better Readability */
+    .table-container {
+        overflow-x: auto;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    
     .table-container table {
+        width: 100%;
         border-collapse: separate;
         border-spacing: 0;
+        background: white;
+        font-size: 14px;
     }
-    .table-container th, .table-container td {
-        padding: 12px 16px;
+    
+    .table-container thead {
+        background: linear-gradient(135deg, #7C3AED 0%, #8B5CF6 100%);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+    
+    .table-container thead th {
+        padding: 16px 20px;
+        text-align: left;
+        font-weight: 600;
+        font-size: 13px;
+        color: white !important;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+        border-bottom: 3px solid rgba(255, 255, 255, 0.1);
+        background: transparent !important;
+    }
+    
+    .table-container thead th:first-child {
+        border-radius: 12px 0 0 0;
+    }
+    
+    .table-container thead th:last-child {
+        border-radius: 0 12px 0 0;
+    }
+    
+    .table-container tbody tr {
+        background: white;
+        transition: all 0.2s ease;
+        border-bottom: 1px solid #F1F5F9;
+    }
+    
+    .table-container tbody tr:hover {
+        background: linear-gradient(to right, rgba(124, 58, 237, 0.03), rgba(139, 92, 246, 0.03));
+        transform: scale(1.005);
+        box-shadow: 0 2px 8px rgba(124, 58, 237, 0.1);
+    }
+    
+    .table-container tbody tr:last-child {
+        border-bottom: none;
+    }
+    
+    .table-container tbody td {
+        padding: 16px 20px;
         vertical-align: middle;
+        color: #334155;
+        font-size: 14px;
     }
+    
+    /* Product Name Column - Make it stand out */
+    .table-container tbody td:first-child {
+        font-weight: 600;
+        color: #1E293B;
+    }
+    
+    /* Supplier Column */
+    .table-container tbody td:nth-child(2) {
+        color: #7C3AED;
+        font-weight: 500;
+    }
+    
+    /* Unit Column Badge */
+    .unit-badge {
+        display: inline-block;
+        padding: 4px 10px;
+        background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(139, 92, 246, 0.1));
+        border: 1px solid rgba(124, 58, 237, 0.2);
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #7C3AED;
+        text-transform: uppercase;
+    }
+    
+    /* Numeric Columns */
     .table-container .text-right {
         text-align: right;
+        font-weight: 500;
+        font-variant-numeric: tabular-nums;
     }
+    
     .table-container .text-center {
         text-align: center;
     }
+    
+    /* Remaining Qty - Positive/Negative Styling */
     .table-container .text-danger {
         color: #dc3545;
-        font-weight: 500;
+        font-weight: 600;
+        background: rgba(220, 53, 69, 0.05);
+        padding: 6px 12px;
+        border-radius: 6px;
+        display: inline-block;
     }
+    
+    .qty-positive {
+        color: #059669;
+        font-weight: 600;
+        background: rgba(5, 150, 105, 0.05);
+        padding: 6px 12px;
+        border-radius: 6px;
+        display: inline-block;
+    }
+    
+    /* Icon Styling */
+    .table-container tbody td i {
+        font-size: 18px;
+    }
+    
+    .status-icon-sent {
+        color: #059669;
+        filter: drop-shadow(0 0 4px rgba(5, 150, 105, 0.3));
+    }
+    
+    .status-icon-not-sent {
+        color: #dc3545;
+        opacity: 0.6;
+    }
+    
+    .status-icon-active {
+        color: #059669;
+        filter: drop-shadow(0 0 4px rgba(5, 150, 105, 0.3));
+    }
+    
+    .status-icon-inactive {
+        color: #dc3545;
+        opacity: 0.6;
+    }
+    
+    /* Action Buttons */
+    .table-container .action-cell {
+        white-space: nowrap;
+    }
+    
     .table-container .action-cell button {
-        background: none;
-        border: none;
+        background: rgba(124, 58, 237, 0.08);
+        border: 1px solid rgba(124, 58, 237, 0.15);
         cursor: pointer;
-        font-size: 16px;
-        color: #64748B;
-        margin: 0 4px;
-        padding: 4px;
+        font-size: 14px;
+        color: #7C3AED;
+        margin: 0 3px;
+        padding: 8px 10px;
+        border-radius: 6px;
+        transition: all 0.2s ease;
     }
+    
     .table-container .action-cell button:hover {
-        color: #1E293B;
+        background: #7C3AED;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(124, 58, 237, 0.2);
+    }
+    
+    .table-container .action-cell button:active {
+        transform: translateY(0);
+    }
+    
+    /* Zebra Striping (Subtle) */
+    .table-container tbody tr:nth-child(even) {
+        background: #FAFBFC;
+    }
+    
+    .table-container tbody tr:nth-child(even):hover {
+        background: linear-gradient(to right, rgba(124, 58, 237, 0.03), rgba(139, 92, 246, 0.03));
     }
     
     /* View Toggle Styles */
@@ -630,17 +781,37 @@
       let html = "";
       data.forEach(item => {
         const productName = item.product_variety ? `${item.product_variety.product_name} - ${item.product_variety.variety_name}` : 'N/A';
-        const remainingQtyClass = item.remaining_qty < 0 ? 'text-danger' : '';
+        const supplierName = item.supplier_name || 'N/A';
+        const unit = item.unit || 'N/A';
+        const remainingQtyClass = item.remaining_qty < 0 ? 'text-danger' : 'qty-positive';
+        const remainingQtyValue = item.remaining_qty < 0 
+          ? `<span class="text-danger">${item.remaining_qty}</span>` 
+          : `<span class="qty-positive">${item.remaining_qty}</span>`;
+        
         html += `<tr>
           <td>${productName}</td>
+          <td>${supplierName}</td>
+          <td class="text-center"><span class="unit-badge">${unit}</span></td>
           <td class="text-right">${item.year}</td>
           <td class="text-center">${new Date(item.date_of_sowing).toLocaleString('default', { month: 'long' })}</td>
           <td class="text-right">${item.forecast_qty}</td>
           <td class="text-right">${item.ordered_qty}</td>
-          <td class="text-right ${remainingQtyClass}">${item.remaining_qty}</td>
-          <td class="text-center" title="${item.dos_alert_sent ? 'Alert Sent' : 'Alert Not Sent'}">${item.dos_alert_sent ? '<i class="fas fa-bell" style="color: green;"></i>' : '<i class="fas fa-bell-slash" style="color: red;"></i>'}</td>
-          <td class="text-center" title="${item.enlistment_status ? 'Enlisted' : 'Not Enlisted'}">${item.enlistment_status ? '<i class="fas fa-check-circle" style="color: green;"></i>' : '<i class="fas fa-times-circle" style="color: red;"></i>'}</td>
-          <td class="text-center" title="${item.order_status ? 'Ordered' : 'Not Ordered'}">${item.order_status ? '<i class="fas fa-check-circle" style="color: green;"></i>' : '<i class="fas fa-times-circle" style="color: red;"></i>'}</td>
+          <td class="text-right">${remainingQtyValue}</td>
+          <td class="text-center" title="${item.dos_alert_sent ? 'Alert Sent' : 'Alert Not Sent'}">
+            ${item.dos_alert_sent 
+              ? '<i class="fas fa-bell status-icon-sent"></i>' 
+              : '<i class="fas fa-bell-slash status-icon-not-sent"></i>'}
+          </td>
+          <td class="text-center" title="${item.enlistment_status ? 'Enlisted' : 'Not Enlisted'}">
+            ${item.enlistment_status 
+              ? '<i class="fas fa-check-circle status-icon-active"></i>' 
+              : '<i class="fas fa-times-circle status-icon-inactive"></i>'}
+          </td>
+          <td class="text-center" title="${item.order_status ? 'Ordered' : 'Not Ordered'}">
+            ${item.order_status 
+              ? '<i class="fas fa-check-circle status-icon-active"></i>' 
+              : '<i class="fas fa-times-circle status-icon-inactive"></i>'}
+          </td>
           <td class="action-cell text-center">
             <button title="Edit" onclick='openForecastModal(${JSON.stringify(item)})'><i class="fas fa-pencil-alt"></i></button>
             <button title="Delete" onclick='deleteForecast("${item.id}")'><i class="fas fa-trash"></i></button>
@@ -1568,6 +1739,8 @@
             <thead>
               <tr>
                 <th>Product</th>
+                <th>Supplier</th>
+                <th class="text-center">Unit</th>
                 <th class="text-right">Year</th>
                 <th class="text-center">Import Month</th>
                 <th class="text-right">Forecast Qty</th>
